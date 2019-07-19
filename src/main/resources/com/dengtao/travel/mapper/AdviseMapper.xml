@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dengtao.travel.mapper.AdviseMapper">
+
+    <select id="select" resultMap="Advise" >
+        select a.advise,u.nickname,u.headimg,a.advise_time
+        from advise a
+        left join user u on a.user_id=u.id
+    </select>
+    <resultMap id="Advise" type="Advise">
+        <result column="advise" property="advise"/>
+        <result column="advise_time" property="adviseTime"/>
+        <association property="user" javaType="User">
+            <result column="nickname" property="nickname"/>
+            <result column="headimg" property="headImg"/>
+        </association>
+    </resultMap>
+
+
+</mapper>
